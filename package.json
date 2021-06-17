@@ -1,5 +1,5 @@
 {
-  "name": "@serverless-tencent/yaml-parser",
+  "name": "@slsplus/yaml-parser",
   "version": "0.1.0",
   "description": "Yaml Parser for serverless.yml",
   "main": "./dist/index.js",

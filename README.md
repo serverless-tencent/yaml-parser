@@ -1,13 +1,13 @@
 # Serverless Yaml Parser
 
-[![npm](https://img.shields.io/npm/v/@serverless-tencent/yaml-parser)](http://www.npmtrends.com/@serverless-tencent/yaml-parser)
-[![NPM downloads](http://img.shields.io/npm/dm/@serverless-tencent/yaml-parser.svg?style=flat-square)](http://www.npmtrends.com/@serverless-tencent/yaml-parser)
+[![npm](https://img.shields.io/npm/v/@slsplus/yaml-parser)](http://www.npmtrends.com/@slsplus/yaml-parser)
+[![NPM downloads](http://img.shields.io/npm/dm/@slsplus/yaml-parser.svg?style=flat-square)](http://www.npmtrends.com/@slsplus/yaml-parser)
 [![Build Status](https://github.com/serverless-plus/cli/workflows/Release/badge.svg?branch=master)](https://github.com/serverless-plus/cli/actions?query=workflow:Release+branch:master)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 Yaml Parser for Serverless Framework.
 
-- [@serverless-tencent/yaml-parser](#Serverless-Yaml-Parser)
+- [@slsplus/yaml-parser](#Serverless-Yaml-Parser)
   - [Installation](#installation)
   - [Usage](#usage)
     - [parse](#Parse-serverless-config-file)
@@ -15,33 +15,37 @@ Yaml Parser for Serverless Framework.
 ## Installation
 
 ```bash
-$ npm i @serverless-tencent/yaml-parser -g
+$ npm i @slsplus/yaml-parser -g
 ```
 
 ## Usage
 
 ```bash
-$ yparse -h
-Usage: yparse [options] [command]
+Usage: yparse [options]
+
+Parse serverless config file with costomize and environment variables replacement
 
 Options:
-  -v, --version                 output the current version
-  -h, --help                    display help for command
-
-Commands:
-  parse [options]               parse serverless config file with costomize and environment variables replacement
-  help [command]                display help for command
+  -v, --version                       output the current version
+  -i, --input [input]                 source serverless config file path
+  -o, --output                        whether output parse result to input serverless config file (default: false)
+  -O, --output-path [outputPath]      output parse result to target serverless config file path
+  -r, --root [rootDir]                root directory for parse command running
+  -a, --auto-create                   whether auto create serverless config file (default: false)
+  -c, --component [component]         serverless component name
+  -s, --sls-options [slsOptions]      serverless config
+  -l, --layer-options [layerOptions]  serverless layer config
+  -or, --override [override]          override serverless config (default: false)
+  -h, --help                          display help for command
 
 Example call:
   $ yparse --help
 ```
 
-> Notice: Below examples will use `sp` instead of `yparse`.
-
 ### Parse serverless config file
 
 ```bash
-$ sp parse -o -s '{"src":"./"}'
+$ yparse -o -s '{"src":"./"}'
 ```
 
 Parse command will parse serverless config file with costomize and environment variables replacement.
@@ -61,60 +65,8 @@ inputs:
   region: ap-guangzhou
 ```
 
-### Migrate serverless config file
-
-```bash
-$ yparse migrate
-```
-
-This command will auto migrate your old yaml config to latest version.
-
-## Development
-
-All `git commit` mesage must follow below syntax:
-
-```bash
-type(scope?): subject  #scope is optional
-```
-
-support type：
-
-- **feat**: add new feature
-- **fix**: fix bug or patch feature
-- **ci**: CI
-- **chore**: modify config, nothing to do with production code
-- **docs**: create or modifiy documents
-- **refactor**: refactor project
-- **revert**: revert
-- **test**: test
-
-Most of time, we just use `feat` and `fix`.
-
-## Test
-
-For CI test, should copy `.env.example` to `.env.test`, then config below environment variables to yours:
-
-```dotenv
-# tencent credentials
-TENCENT_SECRET_ID=xxx
-TENCENT_SECRET_KEY=xxx
-
-# cos url for project code download in CI environment
-CODE_URL_COS=xxx
-# git ulr for git project
-CODE_URL_GIT=xxx
-
-# nextjs
-CODE_URL_COS_NEXTJS=xxx
-STATIC_URL_NEXTJS=xxx
-
-# nuxtjs
-CODE_URL_COS_NUXTJS=xxx
-STATIC_URL_NUXTJS=xxx
-```
-
 ## License
 
 MIT License
 
-Copyright (c) 2020 Serverless Plus
+Copyright (c) 2021 Tencent Cloud, Inc.
