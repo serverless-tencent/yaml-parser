@@ -10,7 +10,7 @@ Yaml Parser for Serverless Framework.
 - [@slsplus/yaml-parser](#Serverless-Yaml-Parser)
   - [Installation](#installation)
   - [Usage](#usage)
-    - [parse](#Parse-serverless-config-file)
+    - [Parse serverless config file](#Parse-serverless-config-file)
 
 ## Installation
 
