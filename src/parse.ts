@@ -6,7 +6,7 @@ import chalk from 'chalk';
 import { program } from 'commander';
 import { fileExist, isJsonPath, isYamlPath, getFileExt, mergeObject } from './utils';
 import { AnyObject, ParseOptions } from './typings';
-import { getDefaultConfig, isHttpFramework } from './components/config';
+import { getDefaultConfig, isNewStandardFramework } from './components/config';
 import { createLayerConfig } from './components/layer';
 
 /**
@@ -73,10 +73,7 @@ function generateLayerYaml(rootDir: string, slsOptions: AnyObject, layerOptions 
     const layerConfig = createLayerConfig(layerPath, JSON.parse(layerOptions));
     // 2. update project serverless.yml
     slsOptions.inputs = slsOptions.inputs || {};
-    if (
-      slsOptions.inputs?.faas?.framework &&
-      isHttpFramework(slsOptions.component, slsOptions.inputs.faas.framework)
-    ) {
+    if (isNewStandardFramework(slsOptions.component)) {
       slsOptions.inputs.faas.layers = slsOptions.inputs.faas.layers || [];
       slsOptions.inputs.faas.layers.push({
         name: '${output:${stage}:${app}:' + layerConfig.name + '.name}',
