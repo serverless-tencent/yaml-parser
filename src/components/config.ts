@@ -38,6 +38,18 @@ const FRAMEWORK_COMPONENTS = [
   'thinkphp',
 ];
 
+const HTTP_FRAMEWORKS = [
+  'express',
+  'koa',
+  'egg',
+  'nextjs',
+  'nuxtjs',
+  'nest',
+  'flask',
+  'django',
+  'laravel',
+];
+
 const COMPONENTS = [...BASE_COMPONENTS, ...FRAMEWORK_COMPONENTS];
 
 const isBaseComponent = (name: string) => {
@@ -48,4 +60,8 @@ const isFrameworkComponent = (name = 'framework') => {
   return FRAMEWORK_COMPONENTS.indexOf(name) !== -1;
 };
 
-export { COMPONENTS, getDefaultConfig, isBaseComponent, isFrameworkComponent };
+const isHttpFramework = (component: string, framework?: string) => {
+  return component === 'http' && framework && HTTP_FRAMEWORKS.includes(framework);
+};
+
+export { COMPONENTS, getDefaultConfig, isBaseComponent, isFrameworkComponent, isHttpFramework };

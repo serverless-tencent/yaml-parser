@@ -6,7 +6,7 @@ import chalk from 'chalk';
 import { program } from 'commander';
 import { fileExist, isJsonPath, isYamlPath, getFileExt, mergeObject } from './utils';
 import { AnyObject, ParseOptions } from './typings';
-import { getDefaultConfig } from './components/config';
+import { getDefaultConfig, isHttpFramework } from './components/config';
 import { createLayerConfig } from './components/layer';
 
 /**
@@ -73,11 +73,22 @@ function generateLayerYaml(rootDir: string, slsOptions: AnyObject, layerOptions 
     const layerConfig = createLayerConfig(layerPath, JSON.parse(layerOptions));
     // 2. update project serverless.yml
     slsOptions.inputs = slsOptions.inputs || {};
-    slsOptions.inputs.layers = slsOptions.inputs.layers || [];
-    slsOptions.inputs.layers.push({
-      name: '${output:${stage}:${app}:' + layerConfig.name + '.name}',
-      version: '${output:${stage}:${app}:' + layerConfig.name + '.version}',
-    });
+    if (
+      slsOptions.inputs?.faas?.framework &&
+      isHttpFramework(slsOptions.component, slsOptions.inputs.faas.framework)
+    ) {
+      slsOptions.inputs.faas.layers = slsOptions.inputs.faas.layers || [];
+      slsOptions.inputs.faas.layers.push({
+        name: '${output:${stage}:${app}:' + layerConfig.name + '.name}',
+        version: '${output:${stage}:${app}:' + layerConfig.name + '.version}',
+      });
+    } else {
+      slsOptions.inputs.layers = slsOptions.inputs.layers || [];
+      slsOptions.inputs.layers.push({
+        name: '${output:${stage}:${app}:' + layerConfig.name + '.name}',
+        version: '${output:${stage}:${app}:' + layerConfig.name + '.version}',
+      });
+    }
   }
   return slsOptions;
 }
