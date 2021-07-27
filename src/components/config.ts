@@ -38,6 +38,8 @@ const FRAMEWORK_COMPONENTS = [
   'thinkphp',
 ];
 
+const NEW_STANDARD_COMPONENTS = ['http'];
+
 const COMPONENTS = [...BASE_COMPONENTS, ...FRAMEWORK_COMPONENTS];
 
 const isBaseComponent = (name: string) => {
@@ -48,4 +50,8 @@ const isFrameworkComponent = (name = 'framework') => {
   return FRAMEWORK_COMPONENTS.indexOf(name) !== -1;
 };
 
-export { COMPONENTS, getDefaultConfig, isBaseComponent, isFrameworkComponent };
+const isNewStandardFramework = (component: string) => {
+  return NEW_STANDARD_COMPONENTS.includes(component);
+};
+
+export { COMPONENTS, getDefaultConfig, isBaseComponent, isFrameworkComponent, isNewStandardFramework };
