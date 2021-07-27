@@ -1,3 +1,10 @@
+## [0.1.2](https://github.com/serverless-tencent/yaml-parser/compare/v0.1.1...v0.1.2) (2021-07-27)
+
+
+### Bug Fixes
+
+* support http component layer config ([bd1e28d](https://github.com/serverless-tencent/yaml-parser/commit/bd1e28d1a45cfc35620466766d0ee0c4be29c0c1))
+
 ## [0.1.1](https://github.com/serverless-tencent/yaml-parser/compare/v0.1.0...v0.1.1) (2021-06-17)
 
 

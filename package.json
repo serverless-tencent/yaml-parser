@@ -1,6 +1,6 @@
 {
   "name": "@slsplus/yaml-parser",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Yaml Parser for serverless.yml",
   "main": "./dist/index.js",
   "bin": {
